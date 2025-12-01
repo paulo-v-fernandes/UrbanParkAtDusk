@@ -5,12 +5,16 @@
 #include "objetos.h"
 #include "iluminacao.h"
 
+
+
+
+
 void desenharChao(void) {
     glNormal3f(0.0, 1.0, 0.0);
-    
+
     float tamanho = 10.0;
     float inicio = -5.0;
-    int divisoes = 40;
+    int divisoes = 80;
     float passo = tamanho / divisoes;
     
     srand(12345);
@@ -39,12 +43,14 @@ void desenharChao(void) {
 void desenharBanco(void) {
     glColor3f(0.4, 0.2, 0.1);
     
+    // assento
     glPushMatrix();
         glTranslatef(0.0, 0.5, 0.0);
         glScalef(1.5, 0.1, 0.5);
         glutSolidCube(1.0);
     glPopMatrix();
     
+
     glPushMatrix();
         glTranslatef(0.0, 0.85, -0.2);
         glScalef(1.5, 0.6, 0.1);
@@ -56,13 +62,13 @@ void desenharBanco(void) {
         glScalef(0.1, 0.5, 0.1);
         glutSolidCube(1.0);
     glPopMatrix();
-    
     glPushMatrix();
         glTranslatef(0.6, 0.25, 0.15);
         glScalef(0.1, 0.5, 0.1);
         glutSolidCube(1.0);
     glPopMatrix();
-    
+
+
     glPushMatrix();
         glTranslatef(-0.6, 0.25, -0.15);
         glScalef(0.1, 0.5, 0.1);
@@ -98,6 +104,7 @@ void desenharPoste(void) {
                 glutSolidSphere(0.12, 16, 16);
             glPopMatrix();
             
+            // lampada
             if (luzPosteEstaAtiva()) {
                 glDisable(GL_LIGHTING);
                 glColor3f(1.0, 0.9, 0.4);
@@ -143,7 +150,7 @@ void desenharArvoreNaPosicao(float x, float z) {
     glPushMatrix();
         glTranslatef(x, 0.0, z);
         
-        glColor3f(0.4, 0.25, 0.1);
+        glColor3f(0.4, 0.25, 0.1); // tronco
         glPushMatrix();
             glRotatef(-90, 1.0, 0.0, 0.0);
             gluCylinder(quad, 0.15, 0.12, 1.2, 16, 4);
@@ -166,6 +173,7 @@ void desenharArvore(void) {
     desenharArvoreNaPosicao(-3.5, -2.0);
 }
 
+
 void desenharLixeira(void) {
     GLUquadric* quad = gluNewQuadric();
     gluQuadricNormals(quad, GLU_SMOOTH);
@@ -179,6 +187,7 @@ void desenharLixeira(void) {
             gluCylinder(quad, 0.15, 0.18, 0.5, 16, 4);
         glPopMatrix();
         
+        // tampa
         glColor3f(0.2, 0.25, 0.2);
         glPushMatrix();
             glTranslatef(0.0, 0.5, 0.0);
@@ -198,6 +207,7 @@ void desenharLixeira(void) {
     gluDeleteQuadric(quad);
 }
 
+
 void desenharPedras(void) {
     glColor3f(0.5, 0.5, 0.5);
     
@@ -213,7 +223,7 @@ void desenharPedras(void) {
         glScalef(0.2, 0.1, 0.18);
         glutSolidSphere(1.0, 12, 12);
     glPopMatrix();
-    
+
     glColor3f(0.45, 0.45, 0.45);
     glPushMatrix();
         glTranslatef(3.2, 0.12, 2.5);
@@ -249,6 +259,7 @@ void desenharLago(void) {
         
     glPopMatrix();
     
+    // pedras ao redor
     glColor3f(0.4, 0.35, 0.3);
     
     int numPedras = 12;
@@ -269,6 +280,7 @@ void desenharLago(void) {
     gluDeleteQuadric(quad);
 }
 
+
 void desenharSol(void) {
     if (!luzSolEstaAtiva()) {
         return;
@@ -281,7 +293,6 @@ void desenharSol(void) {
         glColor3f(1.0, 0.8, 0.3);
         glutSolidSphere(0.8, 32, 32);
         glEnable(GL_LIGHTING);
-        
     glPopMatrix();
 }
 
@@ -297,6 +308,7 @@ void desenharSombras(void) {
     
     GLUquadric* quad = gluNewQuadric();
     
+    // sombra do banco
     glPushMatrix();
         glTranslatef(0.3, 0.01, 0.2);
         glScalef(1.2, 1.0, 0.4);
@@ -310,7 +322,8 @@ void desenharSombras(void) {
         glRotatef(-90, 1.0, 0.0, 0.0);
         gluDisk(quad, 0.0, 0.3, 16, 4);
     glPopMatrix();
-    
+
+    // arvores
     glPushMatrix();
         glTranslatef(-2.0, 0.01, 1.8);
         glScalef(1.0, 1.0, 0.8);
