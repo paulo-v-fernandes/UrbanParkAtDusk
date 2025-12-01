@@ -6,5 +6,6 @@ void atualizarLuzes(void);
 void alternarLuzPoste(void);
 void alternarLuzSol(void);
 int luzPosteEstaAtiva(void);
+int luzSolEstaAtiva(void);
 
 #endif

@@ -9,5 +9,7 @@ void desenharArvoreNaPosicao(float x, float z);
 void desenharLixeira(void);
 void desenharPedras(void);
 void desenharLago(void);
+void desenharSol(void);
+void desenharSombras(void);
 
 #endif

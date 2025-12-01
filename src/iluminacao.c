@@ -59,3 +59,7 @@ void alternarLuzSol(void) {
 int luzPosteEstaAtiva(void) {
     return luzPosteAtiva;
 }
+
+int luzSolEstaAtiva(void) {
+    return luzSolAtiva;
+}

@@ -268,3 +268,72 @@ void desenharLago(void) {
     
     gluDeleteQuadric(quad);
 }
+
+void desenharSol(void) {
+    if (!luzSolEstaAtiva()) {
+        return;
+    }
+    
+    glPushMatrix();
+        glTranslatef(-8.0, 5.0, 0.0);
+        
+        glDisable(GL_LIGHTING);
+        glColor3f(1.0, 0.8, 0.3);
+        glutSolidSphere(0.8, 32, 32);
+        glEnable(GL_LIGHTING);
+        
+    glPopMatrix();
+}
+
+void desenharSombras(void) {
+    if (!luzSolEstaAtiva()) {
+        return;
+    }
+    
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_LIGHTING);
+    glColor4f(0.0, 0.0, 0.0, 0.3);
+    
+    GLUquadric* quad = gluNewQuadric();
+    
+    glPushMatrix();
+        glTranslatef(0.3, 0.01, 0.2);
+        glScalef(1.2, 1.0, 0.4);
+        glRotatef(-90, 1.0, 0.0, 0.0);
+        gluDisk(quad, 0.0, 0.8, 16, 4);
+    glPopMatrix();
+    
+    glPushMatrix();
+        glTranslatef(1.8, 0.01, 1.8);
+        glScalef(1.0, 1.0, 0.6);
+        glRotatef(-90, 1.0, 0.0, 0.0);
+        gluDisk(quad, 0.0, 0.3, 16, 4);
+    glPopMatrix();
+    
+    glPushMatrix();
+        glTranslatef(-2.0, 0.01, 1.8);
+        glScalef(1.0, 1.0, 0.8);
+        glRotatef(-90, 1.0, 0.0, 0.0);
+        gluDisk(quad, 0.0, 0.9, 16, 4);
+    glPopMatrix();
+    
+    glPushMatrix();
+        glTranslatef(-3.0, 0.01, -1.7);
+        glScalef(1.0, 1.0, 0.8);
+        glRotatef(-90, 1.0, 0.0, 0.0);
+        gluDisk(quad, 0.0, 0.9, 16, 4);
+    glPopMatrix();
+    
+    glPushMatrix();
+        glTranslatef(-0.9, 0.01, 0.5);
+        glScalef(0.6, 1.0, 0.4);
+        glRotatef(-90, 1.0, 0.0, 0.0);
+        gluDisk(quad, 0.0, 0.3, 16, 4);
+    glPopMatrix();
+    
+    gluDeleteQuadric(quad);
+    
+    glEnable(GL_LIGHTING);
+    glDisable(GL_BLEND);
+}
